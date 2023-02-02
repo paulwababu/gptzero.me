@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+      <style>
+         body {
+         background-color: #F5F5F5;
+         }
+         #background {
+         background: rgb(2,0,36);
+         background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+         border: 2px solid black;
+         }
+         #form-section {
+         border: 2px solid #007bff;
+         border-radius: 25px;
+         }
+      </style>
+      <link rel="shortcut icon" type="image/x-icon" href="https://res.cloudinary.com/dyqtlsk2y/image/upload/v1675258487/favicon_ppdvgx.png">
+      <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+      <title>GPTZero?? AI Content owes no Truth</title>
+   </head>
+   <body>
+      <!-- Image and text -->
+      <!-- Image and text -->
+      <nav class="navbar navbar-light bg-light d-flex justify-content-center align-items-center">
+         <a class="navbar-brand" href="#">
+            Ｄｅｔｅｃｔｉｏｎ░ｏｆ░ΛＩ░ｇｅｎｅｒａｔｅｄ░ｔｅｘｔ　（フ泳しう愛むがを）
+         </a>
+      </nav>
+      <div class="container-fluid p-2" id="background">
+         <div class="row">
+            <div class="col-md-4 offset-md-4 text-center">
+               <img src="https://res.cloudinary.com/dyqtlsk2y/image/upload/v1675258485/logo_ftaswd.png" alt="Logo" width="200px" height="200px">
+            </div>
+         </div>
+         <br>
+         <div class="row">
+            <div class="col-md-6 offset-md-3">
+               <div class="card" id="form-section">
+                  <div class="card-body">
+                     <h5 class="card-title text-center">How it Works</h5>
+                     <p class="card-text">Get an accurate score for how much of the document is written by AI.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <div class="row">
+            <div class="col-md-6 offset-md-3">
+               <form>
+                  <div class="form-group">
+                     <label style="color: white;" for="questionInput">Enter text to be checked here:</label>
+                     <!--<input type="text" class="form-control" id="questionInput" placeholder="e.g. Not less than 250 words and no more than 4096 characters">-->
+                     <textarea name="textarea1" id="questionInput" rows="6" placeholder="Type in the text you want to check for AI involvement (minimum 250 characters)" class="form-control"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#answerModal" onclick="getAnswer()">
+                  Submit
+                  </button>
+               </form>
+            </div>
+         </div>
+      </div>
+      <footer class="bg-light d-flex justify-content-center align-items-center">
+         <p class="text-center m-0">Ｍａｙ░ｔｈｅ░ｆｏｒｃｅ░ｂｅ░ｗｉｔｈ░ｙｏｕ　（やソげ殴若く）</p>
+      </footer>
+      <div class="modal" tabindex="-1" id="answerModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Answer</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <p id="answer"></p>
+                  <div class="text-center">
+                     <div class="spinner-border" role="status" id="loading" style="display:none">
+                        <span class="sr-only">Loading...</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         function getAnswer() {
+             $("#loading").show();
+             var question = $('#questionInput').val();
+             var apiUrl = "https://cors-anywhere.herokuapp.com/https://6996-102-217-157-201.eu.ngrok.io";
+             apiUrl += "?input_text=";
+             // Add more else if statements for the remaining assessment types
+             apiUrl += encodeURIComponent(question);
+             $.ajax({
+                 url: apiUrl,
+                 type: 'GET',
+                 success: function(answer) {
+                     $("#loading").hide();
+                     $('#answer').text(answer);
+                     $('#answerModal').modal('show');
+                 }
+             });
+         }
+      </script>
+   </body>
+</html>
